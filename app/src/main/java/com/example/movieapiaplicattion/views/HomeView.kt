@@ -27,8 +27,11 @@ fun HomeView(viewModel: PokemonViewModel){
         }
 
         if(pokemon1.isNotEmpty()){
-            item {
-                Text(pokemon1)
+            val urls = pokemon1.split(",").filter { it.isNotEmpty() }
+            urls.forEach { url ->
+                item {
+                    LoadImageFromUrl(url)
+                }
             }
         }
 

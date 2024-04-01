@@ -43,16 +43,19 @@ class PokemonViewModel @Inject constructor(private val repository: PokeRepositor
             _poke.collect { pokemonList ->
                 // Este bloque se ejecutará una vez que _poke tenga un valor
                 withContext(Dispatchers.IO) {
+                    val allSpritesUrls = mutableListOf<String>()
                     for (pokemon in pokemonList) {
                         val result = repository.getPokemons(pokemon.name)
                         // Manejar result
                         result?.let { listSprites ->
                           if(!listSprites.equals("")){
                               val firstSprite = listSprites.front_default
-                              _poke1.value = firstSprite
+                             allSpritesUrls.add(firstSprite)
                           }
                         }
                     }
+                    val concatenatedUrls = allSpritesUrls.joinToString(separator = ",")
+                    _poke1.value = concatenatedUrls
                 }
             }
         }
