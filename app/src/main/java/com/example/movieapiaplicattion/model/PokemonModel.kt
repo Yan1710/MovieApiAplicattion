@@ -8,3 +8,10 @@ data class PokemonList(
     val name:String,
     val url:String
 )
+
+data class Pokemon(
+    val sprites:listSprites
+)
+data class listSprites(
+    val front_default:String
+)

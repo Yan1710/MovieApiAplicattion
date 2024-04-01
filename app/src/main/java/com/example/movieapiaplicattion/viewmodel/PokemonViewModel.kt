@@ -1,8 +1,11 @@
 package com.example.movieapiaplicattion.viewmodel
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapiaplicattion.model.Pokemon
 import com.example.movieapiaplicattion.model.PokemonList
+import com.example.movieapiaplicattion.model.listSprites
 import com.example.movieapiaplicattion.repository.PokeRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -16,12 +19,14 @@ import javax.inject.Inject
 class PokemonViewModel @Inject constructor(private val repository: PokeRepository) : ViewModel() {
 
     private val _poke = MutableStateFlow<List<PokemonList>>(emptyList())
+    private val _poke1 = MutableStateFlow<String>("")
 
     val pokemon = _poke.asStateFlow()
-
+    val pokemon1 = _poke1.asStateFlow()
 
     init {
         fetchPokemon()
+        fetchpokemons()
     }
 
     private fun fetchPokemon() {
@@ -32,5 +37,27 @@ class PokemonViewModel @Inject constructor(private val repository: PokeRepositor
             }
         }
     }
+
+    private fun fetchpokemons() {
+        viewModelScope.launch {
+            _poke.collect { pokemonList ->
+                // Este bloque se ejecutará una vez que _poke tenga un valor
+                withContext(Dispatchers.IO) {
+                    for (pokemon in pokemonList) {
+                        val result = repository.getPokemons(pokemon.name)
+                        // Manejar result
+                        result?.let { listSprites ->
+                          if(!listSprites.equals("")){
+                              val firstSprite = listSprites.front_default
+                              _poke1.value = firstSprite
+                          }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
 
 }
