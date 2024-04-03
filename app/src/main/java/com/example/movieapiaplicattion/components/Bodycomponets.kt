@@ -23,11 +23,13 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.example.movieapiaplicattion.R
+import com.example.movieapiaplicattion.model.ListPokemon
 import com.example.movieapiaplicattion.model.PokemonList
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -53,7 +55,7 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: (
 }
 
 @Composable
-fun CardPokemon(pokemonList: PokemonList, pokeimage: String, onClickAnction: () -> Unit) {
+fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
     Card(
         shape = RoundedCornerShape(5.dp),
         modifier = Modifier
@@ -63,7 +65,7 @@ fun CardPokemon(pokemonList: PokemonList, pokeimage: String, onClickAnction: () 
 
     ) {
         Column {
-            MainImage(image = pokeimage)
+            MainImage(image = pokemonList.url)
         }
     }
 }

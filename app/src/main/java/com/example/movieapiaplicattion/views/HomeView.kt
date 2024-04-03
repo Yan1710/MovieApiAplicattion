@@ -1,6 +1,7 @@
 package com.example.movieapiaplicattion.views
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
@@ -12,6 +13,8 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.movieapiaplicattion.components.CardPokemon
 import com.example.movieapiaplicattion.components.MainTopBar
 import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
@@ -31,25 +34,25 @@ fun HomeView(viewModel: PokemonViewModel) {
 
 @Composable
 fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
-    val pokemon by viewModel.pokemon.collectAsState()
     val pokemon1 by viewModel.pokemon1.collectAsState()
-
-    LazyColumn(
-        modifier = Modifier
-            .padding(paddingValues)
-            .background(Color.Black)
-    ) {
-        items(pokemon) { item ->
-            if (pokemon1.isNotEmpty()) {
-                val urls = pokemon1.split(",").filter { it.isNotEmpty() }
-                urls.forEach { url ->
-                    CardPokemon(pokemonList = item, pokeimage = url) {
-                    }
+    if (pokemon1.isNotEmpty()) {
+        LazyColumn(
+            modifier = Modifier
+                .padding(paddingValues)
+                .background(Color.Black),
+            verticalArrangement = Arrangement.spacedBy(8.dp)
+        ) {
+            items(pokemon1) { item ->
+                CardPokemon(pokemonList = item) {
                 }
+                Text(text = item.name, color = Color.White)
             }
-            Text(text = item.name)
+
         }
+    } else{
+        Text(text = "Cargando datos, por favor espera!!")
     }
 }
+
 
 

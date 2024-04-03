@@ -3,6 +3,7 @@ package com.example.movieapiaplicattion.viewmodel
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.movieapiaplicattion.model.ListPokemon
 import com.example.movieapiaplicattion.model.Pokemon
 import com.example.movieapiaplicattion.model.PokemonList
 import com.example.movieapiaplicattion.model.listSprites
@@ -19,7 +20,7 @@ import javax.inject.Inject
 class PokemonViewModel @Inject constructor(private val repository: PokeRepository) : ViewModel() {
 
     private val _poke = MutableStateFlow<List<PokemonList>>(emptyList())
-    private val _poke1 = MutableStateFlow<String>("")
+    private val _poke1 = MutableStateFlow<List<ListPokemon>>(emptyList())
 
     val pokemon = _poke.asStateFlow()
     val pokemon1 = _poke1.asStateFlow()
@@ -41,26 +42,24 @@ class PokemonViewModel @Inject constructor(private val repository: PokeRepositor
     private fun fetchpokemons() {
         viewModelScope.launch {
             _poke.collect { pokemonList ->
-                // Este bloque se ejecutará una vez que _poke tenga un valor
-                withContext(Dispatchers.IO) {
-                    val allSpritesUrls = mutableListOf<String>()
-                    for (pokemon in pokemonList) {
-                        val result = repository.getPokemons(pokemon.name)
-                        // Manejar result
-                        result?.let { listSprites ->
-                          if(!listSprites.equals("")){
-                              val firstSprite = listSprites.front_default
-                             allSpritesUrls.add(firstSprite)
-                          }
+                if (pokemonList.isNotEmpty()) {
+                    withContext(Dispatchers.IO) {
+                        val pokemonWithNameAndUrlList: MutableList<ListPokemon> = mutableListOf()
+                        for (pokemon in pokemonList) {
+                            val result = repository.getPokemons(pokemon.name)
+                            result?.let { listSprites ->
+                                if (!listSprites.front_default.isNullOrEmpty()) {
+                                    val allSpritesUrls = ListPokemon(pokemon.name, result.front_default)
+                                    pokemonWithNameAndUrlList.add(allSpritesUrls)
+                                }
+                            }
                         }
+                        _poke1.value = pokemonWithNameAndUrlList
                     }
-                    val concatenatedUrls = allSpritesUrls.joinToString(separator = ",")
-                    _poke1.value = concatenatedUrls
                 }
             }
         }
     }
-
 
 
 }
