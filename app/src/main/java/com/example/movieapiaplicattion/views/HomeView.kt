@@ -17,6 +17,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.movieapiaplicattion.components.CardPokemon
 import com.example.movieapiaplicattion.components.MainTopBar
+import com.example.movieapiaplicattion.components.ShowLoading
 import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 
 @Composable
@@ -36,6 +37,7 @@ fun HomeView(viewModel: PokemonViewModel) {
 fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
     val pokemon1 by viewModel.pokemon1.collectAsState()
     if (pokemon1.isNotEmpty()) {
+        ShowLoading(isLoading = false)
         LazyVerticalGrid(
             columns = GridCells.Adaptive(100.dp),
             contentPadding = PaddingValues(5.dp),
@@ -50,7 +52,7 @@ fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
 
         }
     } else {
-        Text(text = "Cargando datos, por favor espera!!")
+        ShowLoading(isLoading = true)
     }
 }
 
