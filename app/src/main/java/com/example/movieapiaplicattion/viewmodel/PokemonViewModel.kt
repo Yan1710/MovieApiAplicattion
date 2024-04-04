@@ -22,7 +22,6 @@ class PokemonViewModel @Inject constructor(private val repository: PokeRepositor
     private val _poke = MutableStateFlow<List<PokemonList>>(emptyList())
     private val _poke1 = MutableStateFlow<List<ListPokemon>>(emptyList())
 
-    val pokemon = _poke.asStateFlow()
     val pokemon1 = _poke1.asStateFlow()
 
     init {

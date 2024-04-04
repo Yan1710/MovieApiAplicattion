@@ -1,6 +1,7 @@
 package com.example.movieapiaplicattion.components
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -64,9 +65,16 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
             .clickable { onClickAnction }
 
     ) {
-        Column {
-            MainImage(image = pokemonList.url)
+        Card( shape = RoundedCornerShape(5.dp),
+            modifier = Modifier
+                .padding(10.dp)
+                .shadow(40.dp)
+        ) {
+            Column {
+                MainImage(image = pokemonList.url)
+            }
         }
+        Text(text = pokemonList.name, color = Color.Black)
     }
 }
 
@@ -87,6 +95,6 @@ fun MainImage(image: String) {
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .fillMaxWidth()
-            .height(250.dp)
+            .height(100.dp)
     )
 }
