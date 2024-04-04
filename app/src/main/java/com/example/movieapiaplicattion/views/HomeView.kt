@@ -45,12 +45,11 @@ fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
                 .background(Color.Black)
         ) {
             items(pokemon1) { item ->
-                CardPokemon(pokemonList = item) {
-                }
+                CardPokemon(pokemonList = item) {}
             }
 
         }
-    }else{
+    } else {
         Text(text = "Cargando datos, por favor espera!!")
     }
 }
