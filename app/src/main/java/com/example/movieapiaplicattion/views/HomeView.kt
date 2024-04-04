@@ -1,5 +1,6 @@
 package com.example.movieapiaplicattion.views
 
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,6 +14,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import com.example.movieapiaplicattion.components.CardPokemon
 import com.example.movieapiaplicattion.components.MainTopBar
 import com.example.movieapiaplicattion.components.ShowLoading
@@ -21,20 +23,20 @@ import com.example.movieapiaplicattion.ui.theme.Topbar
 import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 
 @Composable
-fun HomeView(viewModel: PokemonViewModel) {
+fun HomeView(viewModel: PokemonViewModel,navController: NavController) {
     Scaffold(
         topBar = {
             MainTopBar(title = "LISTA DE POKEMONES") {
             }
         }
     ) {
-        ContentHomeView(viewModel = viewModel, it)
+        ContentHomeView(viewModel = viewModel, it,navController)
     }
 
 }
 
 @Composable
-fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
+fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues,navController: NavController) {
     val pokemon1 by viewModel.pokemon1.collectAsState()
     if (pokemon1.isNotEmpty()) {
         ShowLoading(isLoading = false)
@@ -47,7 +49,10 @@ fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
                 .background(Topbar)
         ) {
             items(pokemon1) { item ->
-                CardPokemon(pokemonList = item) {}
+                CardPokemon(pokemonList = item) {
+                    Log.d("CONtentclick", "ContentHomeView: ")
+                    navController.navigate("DetailView/${item.name}")
+                }
             }
 
         }
