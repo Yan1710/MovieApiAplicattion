@@ -1,7 +1,6 @@
 package com.example.movieapiaplicattion.components
 
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -20,6 +19,7 @@ import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -37,22 +37,25 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil.compose.rememberAsyncImagePainter
 import coil.request.ImageRequest
 import coil.size.Scale
 import com.example.movieapiaplicattion.R
 import com.example.movieapiaplicattion.model.ListPokemon
-import com.example.movieapiaplicattion.model.PokemonList
+import com.example.movieapiaplicattion.ui.theme.Cardcontainer
+import com.example.movieapiaplicattion.ui.theme.ColorFondo
+import com.example.movieapiaplicattion.ui.theme.ColorLoading
+import com.example.movieapiaplicattion.ui.theme.Title
+import com.example.movieapiaplicattion.ui.theme.Topbar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: () -> Unit) {
     TopAppBar(
-        title = { Text(text = title, color = Color.White, fontWeight = FontWeight.ExtraBold) },
+        title = { Text(text = title, color = ColorFondo, fontWeight = FontWeight.ExtraBold) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
-            containerColor = Color(0xFFC55810)
+            containerColor = Title
         ),
         navigationIcon = {
             if (showBackButton) {
@@ -73,6 +76,7 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
     val pressed = remember { mutableStateOf(false) }
     Card(
         shape = RoundedCornerShape(5.dp),
+        colors = CardDefaults.cardColors(containerColor = Title),
         modifier = Modifier
             .padding(10.dp)
             .shadow(40.dp)
@@ -89,11 +93,13 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
                 MainImage(image = pokemonList.url)
             }
         }
-        Row(modifier = Modifier.padding(9.dp).fillMaxWidth(),
+        Row(modifier = Modifier
+            .padding(9.dp)
+            .fillMaxWidth(),
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
             ) {
-            Text(text = pokemonList.name, color = Color.Black,
+            Text(text = pokemonList.name, color = ColorFondo,
                 modifier = Modifier.weight(1f))
             IconButton(
                 onClick = {
@@ -103,7 +109,7 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
             ) {
                 Icon(
                     imageVector = if (!pressed.value) Icons.Default.FavoriteBorder else Icons.Default.Favorite,
-                    tint = Color.Red,
+                    tint = Topbar,
                     contentDescription = ""
                 )
             }
@@ -144,7 +150,7 @@ fun ShowLoading(isLoading: Boolean, loadingText: String = "Por favor espere...")
             ) {
                 CircularProgressIndicator(
                     modifier = Modifier.size(48.dp),
-                    color = Color(0xFFC55810) 
+                    color = ColorLoading
                 )
                 Spacer(modifier = Modifier.height(8.dp))
                 Text(text = loadingText)

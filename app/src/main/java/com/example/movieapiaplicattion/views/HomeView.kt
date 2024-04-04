@@ -8,16 +8,16 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.movieapiaplicattion.components.CardPokemon
 import com.example.movieapiaplicattion.components.MainTopBar
 import com.example.movieapiaplicattion.components.ShowLoading
+import com.example.movieapiaplicattion.ui.theme.ColorFondo
+import com.example.movieapiaplicattion.ui.theme.Topbar
 import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 
 @Composable
@@ -44,7 +44,7 @@ fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues) {
             modifier = Modifier
                 .padding(paddingValues)
                 .fillMaxSize()
-                .background(Color.Black)
+                .background(Topbar)
         ) {
             items(pokemon1) { item ->
                 CardPokemon(pokemonList = item) {}
