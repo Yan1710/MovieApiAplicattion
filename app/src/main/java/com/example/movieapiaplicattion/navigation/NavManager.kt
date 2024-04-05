@@ -23,7 +23,6 @@ fun NavManager(viewModel: PokemonViewModel){
             navArgument("name"){type = NavType.StringType}
         )){
             val name = it.arguments?.getString("name") ?: " "
-            Log.d("NAVONCLICK", "NavManager:"+ name)
             DetailView(viewModel, navController,name)
         }
     }

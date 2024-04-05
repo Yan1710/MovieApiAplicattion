@@ -80,7 +80,7 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
         modifier = Modifier
             .padding(10.dp)
             .shadow(40.dp)
-            .clickable { onClickAnction }
+            .clickable { onClickAnction.invoke() }
 
     ) {
         Card(

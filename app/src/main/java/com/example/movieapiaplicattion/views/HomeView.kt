@@ -50,7 +50,6 @@ fun ContentHomeView(viewModel: PokemonViewModel, paddingValues: PaddingValues,na
         ) {
             items(pokemon1) { item ->
                 CardPokemon(pokemonList = item) {
-                    Log.d("CONtentclick", "ContentHomeView: ")
                     navController.navigate("DetailView/${item.name}")
                 }
             }

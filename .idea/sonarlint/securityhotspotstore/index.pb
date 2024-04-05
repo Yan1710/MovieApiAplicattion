@@ -17,3 +17,5 @@ r
 Bapp/src/main/java/com/example/movieapiaplicattion/data/MovieApi.kt,8\3\83dd5c405a0ef7b5cec7ad4d4e7b5f36dd4227eb
 s
 Capp/src/main/java/com/example/movieapiaplicattion/ui/theme/Theme.kt,2\a\2a544edbf0377953d7d1ce18994207538a56d187
+q
+Aapp/src/main/java/com/example/movieapiaplicattion/MainActivity.kt,9\7\975da8b2600558bd7566905d14ae6f5e8553891b
