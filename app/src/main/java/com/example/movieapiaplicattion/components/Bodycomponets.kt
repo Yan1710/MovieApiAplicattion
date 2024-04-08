@@ -80,6 +80,7 @@ fun CardPokemon(pokemonList: ListPokemon, onClickAnction: () -> Unit) {
         modifier = Modifier
             .padding(10.dp)
             .shadow(40.dp)
+            .height(87.dp)
             .clickable { onClickAnction.invoke() }
 
     ) {
@@ -124,7 +125,6 @@ fun MainImage(image: String) {
         ImageRequest.Builder(LocalContext.current).data(data = image)
             .apply(block = fun ImageRequest.Builder.() {
                 error(R.drawable.images)
-                scale(Scale.FILL)
             }).scale(Scale.FILL)
             .build()
     )
@@ -134,7 +134,6 @@ fun MainImage(image: String) {
         contentScale = ContentScale.Crop,
         modifier = Modifier
             .fillMaxWidth()
-            .height(100.dp)
     )
 }
 @Composable

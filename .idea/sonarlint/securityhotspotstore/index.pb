@@ -12,8 +12,6 @@ D
 ~
 Napp/src/main/java/com/example/movieapiaplicattion/repository/PokeRepository.kt,b\d\bd3f0e5af089f3f79354b8b0169343e7ec46b772
 s
-Capp/src/main/java/com/example/movieapiaplicattion/utils/Contants.kt,5\1\5110cb3d5737b07d4b90b6811395fe47231cea0d
-s
 Capp/src/main/java/com/example/movieapiaplicattion/ui/theme/Theme.kt,2\a\2a544edbf0377953d7d1ce18994207538a56d187
 q
 Aapp/src/main/java/com/example/movieapiaplicattion/MainActivity.kt,9\7\975da8b2600558bd7566905d14ae6f5e8553891b
