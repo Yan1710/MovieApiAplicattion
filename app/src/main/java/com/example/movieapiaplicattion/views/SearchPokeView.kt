@@ -27,30 +27,42 @@ import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SearchPokeView(viewModel: PokemonViewModel, navController: NavController) {
-  var query by remember { mutableStateOf("") }
-  var active by remember { mutableStateOf(false) }
-  val pokemon by viewModel.pokemon1.collectAsState()
-  SearchBar(modifier = Modifier
-    .fillMaxWidth()
-    .padding(16.dp),
-    query = query,
-    onQueryChange = { query = it },
-    onSearch = { active = false },
-    active = active,
-    onActiveChange = { active = it },
-    placeholder = {
-      Text(
-        text = "Search"
-      ) },
-    leadingIcon = { Icon(imageVector = Icons.Default.Search , contentDescription = "")},
-    trailingIcon = {Icon(imageVector = Icons.Default.Close , contentDescription = "", modifier = Modifier.clickable { navController.popBackStack() })}
-  
-  ) {
-    if(query.isNotEmpty()){
-      val filterPoke = pokemon.filter { it.name.contains(query,ignoreCase = true) }
-      filterPoke.forEach{
-        Text(text = it.name, fontSize = 20.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(bottom = 10.dp, start = 10.dp).clickable { navController.navigate("DetailView/${it.name}") })
-      }
+    var query by remember { mutableStateOf("") }
+    var active by remember { mutableStateOf(false) }
+    val pokemon by viewModel.pokemon1.collectAsState()
+    SearchBar(modifier = Modifier
+      .fillMaxWidth()
+      .padding(16.dp),
+        query = query,
+        onQueryChange = { query = it },
+        onSearch = { active = false },
+        active = active,
+        onActiveChange = { active = it },
+        placeholder = {
+            Text(
+                text = "Search"
+            )
+        },
+        leadingIcon = { Icon(imageVector = Icons.Default.Search, contentDescription = "") },
+        trailingIcon = {
+            Icon(
+                imageVector = Icons.Default.Close,
+                contentDescription = "",
+                modifier = Modifier.clickable { navController.popBackStack() })
+        }
+
+    ) {
+        if (query.isNotEmpty()) {
+            val filterPoke = pokemon.filter { it.name.contains(query, ignoreCase = true) }
+            filterPoke.forEach {
+                Text(
+                    text = it.name,
+                    fontSize = 20.sp,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                      .padding(bottom = 10.dp, start = 10.dp)
+                      .clickable { navController.navigate("DetailView/${it.name}") })
+            }
+        }
     }
-  }
 }
