@@ -18,6 +18,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
+import androidx.compose.material.icons.filled.Search
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
@@ -51,7 +52,7 @@ import com.example.movieapiaplicattion.ui.theme.Topbar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: () -> Unit) {
+fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: () -> Unit,onClickAnctionSearch: () -> Unit) {
     TopAppBar(
         title = { Text(text = title, color = ColorFondo, fontWeight = FontWeight.ExtraBold) },
         colors = TopAppBarDefaults.mediumTopAppBarColors(
@@ -64,6 +65,17 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: (
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "BACK",
                         tint = Color.White
+                    )
+                }
+            }
+        },
+        actions = {
+            if (!showBackButton) {
+                IconButton(onClick = { onClickAnctionSearch.invoke() }) {
+                    Icon(
+                        imageVector = Icons.Default.Search,
+                        contentDescription = "Search",
+                        tint = Color.Black
                     )
                 }
             }

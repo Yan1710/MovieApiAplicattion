@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SearchBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -30,9 +31,7 @@ import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 @Composable
 fun DetailView(viewModel: PokemonViewModel, navController: NavController, name: String) {
     Scaffold(topBar = {
-        MainTopBar(title = "Detalle del pokemon $name",true) {
-            navController.popBackStack()
-        }
+      MainTopBar(title = "$name", showBackButton = true ,onClickAnction = { navController.popBackStack() }) {}
     }) {
          ContentDeailView( viewModel,  it,  navController,name)
     }
@@ -74,6 +73,7 @@ fun ContentDeailView(
         Text(text = viewModel.state.weight.toString())
         Spacer(modifier = Modifier.height(8.dp))
         Text(text = viewModel.state.order.toString())
+
     }
 
 }

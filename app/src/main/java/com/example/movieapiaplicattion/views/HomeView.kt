@@ -26,7 +26,8 @@ import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 fun HomeView(viewModel: PokemonViewModel,navController: NavController) {
     Scaffold(
         topBar = {
-            MainTopBar(title = "LISTA DE POKEMONES") {
+            MainTopBar(title = "Lista Pokemon", onClickAnction = { /*TODO*/ }) {
+                navController.navigate("SearchPokeView")
             }
         }
     ) {

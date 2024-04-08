@@ -10,6 +10,7 @@ import androidx.navigation.navArgument
 import com.example.movieapiaplicattion.viewmodel.PokemonViewModel
 import com.example.movieapiaplicattion.views.DetailView
 import com.example.movieapiaplicattion.views.HomeView
+import com.example.movieapiaplicattion.views.SearchPokeView
 
 
 @Composable
@@ -24,6 +25,9 @@ fun NavManager(viewModel: PokemonViewModel){
         )){
             val name = it.arguments?.getString("name") ?: " "
             DetailView(viewModel, navController,name)
+        }
+        composable("SearchPokeView"){
+            SearchPokeView(viewModel, navController )
         }
     }
 }
