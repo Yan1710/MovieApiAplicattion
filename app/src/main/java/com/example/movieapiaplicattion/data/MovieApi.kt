@@ -1,5 +1,6 @@
 package com.example.movieapiaplicattion.data
 
+import com.example.movieapiaplicattion.model.DetailPokemonsModel
 import com.example.movieapiaplicattion.model.Pokemon
 import com.example.movieapiaplicattion.model.PokemonList
 import com.example.movieapiaplicattion.model.PokemonModel
@@ -14,5 +15,7 @@ interface MovieApi {
     suspend fun  getPokemons() : Response<PokemonModel>
     @GET("pokemon/{name}")
     suspend fun  getPokemon(@Path("name")name:String): Response<Pokemon>
+    @GET("pokemon/{name}")
+    suspend fun getPokemonDetail(@Path("name")name:String):Response<DetailPokemonsModel>
 
 }

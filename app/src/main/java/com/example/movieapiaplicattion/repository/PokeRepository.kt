@@ -1,6 +1,7 @@
 package com.example.movieapiaplicattion.repository
 
 import com.example.movieapiaplicattion.data.MovieApi
+import com.example.movieapiaplicattion.model.DetailPokemonsModel
 import com.example.movieapiaplicattion.model.Pokemon
 import com.example.movieapiaplicattion.model.PokemonList
 import com.example.movieapiaplicattion.model.listSprites
@@ -22,4 +23,12 @@ class PokeRepository @Inject constructor(private val apiPokemon:MovieApi) {
         }
         return null
     }
+    suspend fun getPokemonsDetail(name:String): DetailPokemonsModel? {
+        val response = apiPokemon.getPokemonDetail(name)
+        if(response.isSuccessful){
+            return response.body()
+        }
+        return null
+        }
+
 }
