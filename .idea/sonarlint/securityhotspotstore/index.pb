@@ -13,8 +13,6 @@ D
 Napp/src/main/java/com/example/movieapiaplicattion/repository/PokeRepository.kt,b\d\bd3f0e5af089f3f79354b8b0169343e7ec46b772
 s
 Capp/src/main/java/com/example/movieapiaplicattion/utils/Contants.kt,5\1\5110cb3d5737b07d4b90b6811395fe47231cea0d
-r
-Bapp/src/main/java/com/example/movieapiaplicattion/data/MovieApi.kt,8\3\83dd5c405a0ef7b5cec7ad4d4e7b5f36dd4227eb
 s
 Capp/src/main/java/com/example/movieapiaplicattion/ui/theme/Theme.kt,2\a\2a544edbf0377953d7d1ce18994207538a56d187
 q

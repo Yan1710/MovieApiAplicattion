@@ -59,7 +59,7 @@ fun MainTopBar(title: String, showBackButton: Boolean = false, onClickAnction: (
         ),
         navigationIcon = {
             if (showBackButton) {
-                IconButton(onClick = { onClickAnction }) {
+                IconButton(onClick = { onClickAnction.invoke() }) {
                     Icon(
                         imageVector = Icons.Default.ArrowBack,
                         contentDescription = "BACK",

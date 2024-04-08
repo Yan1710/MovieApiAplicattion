@@ -72,6 +72,7 @@ class PokemonViewModel @Inject constructor(private val repository: PokeRepositor
                     name = result?.name ?: "",
                     order = result?.order ?: 0,
                     weight = result?.weight ?: 0,
+                    front_default = result?.sprites?.front_default ?:""
                 )
             }
         }
