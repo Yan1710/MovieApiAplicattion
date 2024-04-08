@@ -24,4 +24,5 @@ Jetpack Compose: Biblioteca moderna de UI para construir interfaces de usuario n
 ViewModel: Componente de arquitectura que se utiliza para almacenar y gestionar datos relacionados con la interfaz de usuario de la aplicación de manera optimizada.
 Dagger Hilt: Biblioteca de inyección de dependencias para Android que simplifica la implementación de la inyección de dependencias en las aplicaciones.
 
+[pokeapi.webm](https://github.com/Yan1710/PokeApiAplicattion/assets/104707819/4b6f12ae-e932-4773-ae12-02cc94e40572)
 
