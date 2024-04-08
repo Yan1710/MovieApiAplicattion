@@ -9,7 +9,7 @@ Esta es una aplicación de muestra que utiliza Kotlin, Jetpack Compose, ViewMode
 * Inyección de Dependencias: Utiliza Dagger Hilt para la inyección de dependencias, facilitando la gestión de los objetos a lo largo de la aplicación.
 
 ## Requisitos
-Dispositivo con Android 5.0 (API nivel 21) o superior.
+Dispositivo con Android 7.0 (API nivel 24) o superior.
 Conexión a internet para obtener datos de la API de Pokémon.
 
 ## Instalación
